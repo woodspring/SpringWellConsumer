@@ -1,0 +1,11 @@
+spring:
+  kafka:
+    consumer:
+        group-id: tpd-loggers
+        auto-offset-reset: earliest
+    bootstrap-servers: 192.168.0.107:9092      
+tpd:
+    topic-name: northyork
+    message-per-request: 10
+    
+
