@@ -1,6 +1,8 @@
 package woodspring.springwellconsumer.entity;
 
-public class StockFeed {
+import java.io.Serializable;
+
+public class StockFeed implements Serializable {
 	Long id;
 	String symbol;
 	Double price;
@@ -44,6 +46,11 @@ public class StockFeed {
 	}
 	public void setAtTime(Long atTime) {
 		this.atTime = atTime;
+	}
+	@Override
+	public String toString() {
+		return "StockFeed [id=" + id + ", symbol=" + symbol + ", price=" + price + ", side=" + side + ", atTime="
+				+ atTime + "]";
 	}
 
 }

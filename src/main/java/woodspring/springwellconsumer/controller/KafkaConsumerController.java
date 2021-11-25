@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import woodspring.springwellconsumer.service.ConsumerKafkaService;
+import woodspring.springwellconsumer.service.impl.StockFeedKafkaService;
 
 
 @RestController
@@ -19,6 +20,9 @@ public class KafkaConsumerController {
 	private final static Logger logger = LoggerFactory.getLogger(KafkaConsumerController.class);
 	@Autowired
     private  ConsumerKafkaService consumerService;
+	
+	@Autowired
+	private StockFeedKafkaService stockFeedSrv;
 
     @GetMapping(value = "/consumer")
     public String listenMessage() {
@@ -26,6 +30,17 @@ public class KafkaConsumerController {
     	logger.info(" consumer start listening ============================ ");
     	
     	String retStr = consumerService.startListening();
+    	
+    	logger.info(" consumer get message=========[{}] ", retStr);
+        return retStr;
+    }
+    
+    @GetMapping(value = "/stock")
+    public String listenStockFeed() {
+    	
+    	logger.info(" consumer start listenStockFeed ============================ ");
+    	
+    	String retStr = stockFeedSrv.startListen();
     	
     	logger.info(" consumer get message=========[{}] ", retStr);
         return retStr;
